@@ -1,6 +1,11 @@
 package services
 
-import "github.com/So-ham/notf-service/internal/models"
+import (
+	"context"
+
+	"github.com/So-ham/notf-service/internal/entities"
+	"github.com/So-ham/notf-service/internal/models"
+)
 
 // Service represents the service layer having
 // all the services from all service packages
@@ -15,4 +20,6 @@ func New(model *models.Model) Service {
 }
 
 type Service interface {
+	AddFlaggedNotf(ctx context.Context, req *entities.FlaggedNotfRequest) (err error)
+	GetNotifications(ctx context.Context) ([]entities.FlaggedNotf, error)
 }

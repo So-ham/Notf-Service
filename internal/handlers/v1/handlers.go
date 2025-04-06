@@ -1,6 +1,8 @@
 package v1
 
 import (
+	"net/http"
+
 	"github.com/So-ham/notf-service/internal/services"
 	"github.com/go-playground/validator/v10"
 )
@@ -13,6 +15,7 @@ type handlerV1 struct {
 
 // HandlerV1 has handlers list
 type HandlerV1 interface {
+	GetNotifications(w http.ResponseWriter, r *http.Request)
 }
 
 // New creates an instance of handlers for V1

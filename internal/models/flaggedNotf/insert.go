@@ -1,6 +1,7 @@
 package flaggedNotf
 
 import (
+	"context"
 	"fmt"
 	"time"
 
@@ -8,11 +9,11 @@ import (
 )
 
 // AddComment adds a flaggedNotf to a post in the database
-func (m *flaggedNotf) AddFlaggedNotf(userID uint, severity, content string) (err error) {
+func (m *flaggedNotf) AddFlaggedNotf(ctx context.Context, req *entities.FlaggedNotfRequest) (err error) {
 	flaggedNotf := &entities.FlaggedNotf{
-		Severity: severity,
-		UserID:   userID,
-		Content:  content,
+		Severity: req.Severity,
+		UserID:   req.UserID,
+		Content:  req.Content,
 	}
 	err = m.DB.Create(flaggedNotf).Error
 	return err

@@ -1,7 +1,10 @@
 package rest
 
 import (
+	"net/http"
+
 	"github.com/So-ham/notf-service/internal/handlers"
+	"github.com/So-ham/notf-service/pkg/middlewares"
 	"github.com/gorilla/mux"
 )
 
@@ -14,12 +17,12 @@ func NewRouter(h *handlers.Handler) *mux.Router {
 	// router.HandleFunc("/auth/login", h.V1.LoginHandler).Methods("POST")
 
 	// // Post endpoints
-	// router.Handle("/posts", middlewares.JWTMiddleware(http.HandlerFunc(h.V1.GetAllPostsHandler))).Methods("GET")
+	router.Handle("/notify", middlewares.JWTMiddleware(http.HandlerFunc(h.V1.GetNotifications))).Methods("GET")
 	// router.Handle("/comment", middlewares.JWTMiddleware(http.HandlerFunc(h.V1.AddCommentHandler))).Methods("POST")
 
 	// router.Handle("/review", middlewares.JWTMiddleware(http.HandlerFunc(h.V1.AddReviewHandler))).Methods("POST")
 
-	// router.HandleFunc("/comment", h.V1.AddCommentHandler).Methods("POST")
+	// router.HandleFunc("/notify", h.V1.AddCommentHandler).Methods("POST")
 
 	return router
 }

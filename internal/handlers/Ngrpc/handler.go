@@ -1,8 +1,11 @@
-package grpc
+package Ngrpc
 
 import (
+	"context"
+
 	"github.com/So-ham/notf-service/internal/services"
 	pb "github.com/So-ham/notf-service/internal/web/grpc"
+	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 type notfServiceServer struct {
@@ -10,7 +13,8 @@ type notfServiceServer struct {
 	Service services.Service
 }
 
-type PoutServiceServer interface {
+type NotfServiceServer interface {
+	SendFlaggedNotification(ctx context.Context, req *pb.SendFlaggedNotificationReq) (*emptypb.Empty, error)
 	pb.UnsafeNotfServiceServer
 }
 

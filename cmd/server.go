@@ -9,8 +9,10 @@ import (
 
 	"github.com/So-ham/notf-service/internal/db/postgres"
 	"github.com/So-ham/notf-service/internal/handlers"
+	"github.com/So-ham/notf-service/internal/handlers/Ngrpc"
 	"github.com/So-ham/notf-service/internal/models"
 	"github.com/So-ham/notf-service/internal/services"
+	pb "github.com/So-ham/notf-service/internal/web/grpc"
 	"github.com/So-ham/notf-service/internal/web/rest"
 	"github.com/go-playground/validator/v10"
 	"github.com/joho/godotenv"
@@ -59,8 +61,10 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
+	fmt.Println("Grpc Server listening on port 7070...")
 
 	grpcServer := grpc.NewServer()
+	pb.RegisterNotfServiceServer(grpcServer, Ngrpc.New(service))
 	grpcServer.Serve(lis)
 
 }

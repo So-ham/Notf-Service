@@ -37,7 +37,7 @@ func NewNotfServiceClient(cc grpc.ClientConnInterface) NotfServiceClient {
 
 func (c *notfServiceClient) SendFlaggedNotification(ctx context.Context, in *SendFlaggedNotificationReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/grpc.NotfService/SendFlaggedNotification", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/notf.NotfService/SendFlaggedNotification", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,7 +83,7 @@ func _NotfService_SendFlaggedNotification_Handler(srv interface{}, ctx context.C
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc.NotfService/SendFlaggedNotification",
+		FullMethod: "/notf.NotfService/SendFlaggedNotification",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NotfServiceServer).SendFlaggedNotification(ctx, req.(*SendFlaggedNotificationReq))
@@ -95,7 +95,7 @@ func _NotfService_SendFlaggedNotification_Handler(srv interface{}, ctx context.C
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var NotfService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "grpc.NotfService",
+	ServiceName: "notf.NotfService",
 	HandlerType: (*NotfServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

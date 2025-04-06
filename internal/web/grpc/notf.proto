@@ -1,5 +1,5 @@
 syntax = "proto3";
-package grpc;
+package notf;
 
 import "google/protobuf/empty.proto"; 
 
@@ -7,7 +7,7 @@ option go_package="notf-service/internal/web/conrpc";
 
 // GetCardsMap messages
 message SendFlaggedNotificationReq {
-    string userID = 1;
+    uint32 userID = 1;
     string content = 2;
     string severity = 3;
 }
