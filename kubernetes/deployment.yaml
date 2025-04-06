@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notf-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notf-service
+  template:
+    metadata:
+      labels:
+        app: notf-service
+    spec:
+      containers:
+      - name: notf-container
+        image: 9874694577/notf-service:${{ github.sha }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 7070  # gRPC
+        - containerPort: 8082  # HTTP
+        env:
+        - name: ENV
+          value: "prod"
+        - name: PORT
+          value: "8082"
+        - name: JWT_SECRET_KEY
+          value: "your_secret_key"
+        - name: DATABASE_URL
+          value: "postgresql://camarinAI_owner:npg_TbcKpXg1rw3Z@ep-odd-star-a503ony8-pooler.us-east-2.aws.neon.tech/camarinAI?sslmode=require"

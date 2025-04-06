@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: notf-service
+spec:
+  type: ClusterIP
+  selector:
+    app: notf-service
+  ports:
+    - name: http
+      port: 80         # Internal cluster port for HTTP
+      targetPort: 8082 # Matches your HTTP server
+    - name: grpc
+      port: 7070       # Internal cluster port for gRPC
+      targetPort: 7070 # Matches your gRPC server inside the container
