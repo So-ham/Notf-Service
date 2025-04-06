@@ -28,3 +28,11 @@ spec:
           value: "your_secret_key"
         - name: DATABASE_URL
           value: "postgresql://camarinAI_owner:npg_TbcKpXg1rw3Z@ep-odd-star-a503ony8-pooler.us-east-2.aws.neon.tech/camarinAI?sslmode=require"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+
