@@ -19,15 +19,11 @@ spec:
         ports:
         - containerPort: 7070  # gRPC
         - containerPort: 8082  # HTTP
-        env:
-        - name: ENV
-          value: "prod"
-        - name: PORT
-          value: "8082"
-        - name: JWT_SECRET_KEY
-          value: "your_secret_key"
-        - name: DATABASE_URL
-          value: "postgresql://camarinAI_owner:npg_TbcKpXg1rw3Z@ep-odd-star-a503ony8-pooler.us-east-2.aws.neon.tech/camarinAI?sslmode=require"
+        envFrom:
+        - configMapRef:
+            name: notf-config
+        - secretRef:
+            name: notf-secrets
         resources:
           requests:
             memory: "128Mi"
